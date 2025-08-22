@@ -2,8 +2,8 @@ package app
 
 import (
 	"context"
+	"github.com/cynx-io/ananke-reservation/internal/dependencies"
 	"github.com/cynx-io/cynx-core/src/logger"
-	"github.com/cynx-io/micro-name/internal/dependencies"
 )
 
 type Dependencies struct {

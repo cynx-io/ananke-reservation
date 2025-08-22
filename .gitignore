@@ -31,7 +31,7 @@ go.work.sum
 .idea/
 .vscode/
 
-micro-name
+ananke-reservation
 
 api/proto/gen/
 gen/

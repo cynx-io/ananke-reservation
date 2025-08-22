@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package ananke;
+
+option go_package = "ananke/api/proto";
+
+import "core.proto";
+
+message Preorder {
+  int32 id = 1;
+  string payment_invoice_id = 2;
+  ReservationStatus status = 3;
+  string payment_link_url = 4;
+  google.protobuf.Timestamp expires_at = 6;
+  float amount = 7;
+  string currency = 8;
+  string description = 9;
+  string provider = 10;
+  int32 reservation_type_id = 11;
+}
+
+message ReservationType {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  float amount = 4;
+  string currency = 5;
+}
+
+enum ReservationStatus {
+  RESERVATION_STATUS_PENDING = 0;
+  RESERVATION_STATUS_COMPLETED = 1;
+  RESERVATION_STATUS_FAILED = 2;
+}

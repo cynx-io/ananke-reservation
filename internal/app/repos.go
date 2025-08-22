@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/cynx-io/micro-name/internal/repository/database"
+	"github.com/cynx-io/ananke-reservation/internal/repository/database"
 )
 
 type Repos struct {

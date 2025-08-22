@@ -24,7 +24,7 @@ install_deps:
 clean:
 	@echo "Cleaning generated files..."
 	rm -f api/proto/user/*.pb.go
-	rm -f bin/microname
+	rm -f bin/ananke
 
 .PHONY: all
 all: clean proto build
@@ -46,6 +46,6 @@ proto-gen:
 proto: proto-clean proto-gen
 
 build_and_push:
-	docker build -t micro-name-dev:latest .
-	docker tag micro-name-dev:latest derwin334/micro-name-dev:latest
-	docker push derwin334/micro-name-dev:latest
+	docker build -t ananke-reservation-dev:latest .
+	docker tag ananke-reservation-dev:latest derwin334/ananke-reservation-dev:latest
+	docker push derwin334/ananke-reservation-dev:latest

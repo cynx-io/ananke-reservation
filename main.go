@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	"github.com/cynx-io/ananke-reservation/internal/app"
+	"github.com/cynx-io/ananke-reservation/internal/dependencies/config"
+	"github.com/cynx-io/ananke-reservation/internal/grpc"
 	"github.com/cynx-io/cynx-core/src/logger"
-	"github.com/cynx-io/micro-name/internal/app"
-	"github.com/cynx-io/micro-name/internal/dependencies/config"
-	"github.com/cynx-io/micro-name/internal/grpc"
 	"github.com/sirupsen/logrus"
 )
 
@@ -22,10 +22,10 @@ func main() {
 	logger.Init(logger.LoggerConfig{
 		Level:            logLevel,
 		ElasticsearchURL: []string{config.Config.Elastic.Url},
-		ServiceName:      "micro-name",
+		ServiceName:      "ananke-reservation",
 	})
 
-	logger.Info(ctx, "Starting microname")
+	logger.Info(ctx, "Starting ananke")
 	ctx, cancel := context.WithCancel(context.Background())
 	defer func() {
 		cancel()

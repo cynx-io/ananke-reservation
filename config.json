@@ -1,8 +1,8 @@
 {
   "app": {
     "address": "0.0.0.0",
-    "port": 5001,
-    "name": "Microname",
+    "port": 5007,
+    "name": "Ananke",
     "debug": true,
     "key": "sashimi"
   },
@@ -13,7 +13,7 @@
   "database": {
     "host": "devspace",
     "port": 30306,
-    "database": "db_microname",
+    "database": "db_ananke",
     "username": "cynx",
     "password": "derwin334",
     "dialect": "mysql",

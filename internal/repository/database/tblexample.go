@@ -2,7 +2,7 @@ package database
 
 import (
 	"context"
-	"github.com/cynx-io/micro-name/internal/model/entity"
+	"github.com/cynx-io/ananke-reservation/internal/model/entity"
 	"gorm.io/gorm"
 )
 
