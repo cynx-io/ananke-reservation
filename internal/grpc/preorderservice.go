@@ -15,3 +15,8 @@ func (s *Server) InitiatePreorder(ctx context.Context, req *proto.InitiatePreord
 	var resp proto.PreorderResponse
 	return grpc.HandleGrpc(ctx, req, &resp, s.Services.PaymentService.InitiatePreorder)
 }
+
+func (s *Server) GetLatestCompletedOrPendingPreorder(ctx context.Context, req *proto.GetLatestCompletedOrPendingPreorderRequest) (*proto.PreorderResponse, error) {
+	var resp proto.PreorderResponse
+	return grpc.HandleGrpc(ctx, req, &resp, s.Services.PaymentService.GetLatestCompletedOrPendingPreorder)
+}

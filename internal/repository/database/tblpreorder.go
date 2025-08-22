@@ -28,7 +28,7 @@ func (r *TblPreorder) GetPreorderById(ctx context.Context, id int32) (*entity.Tb
 	return &existingPreorder, nil
 }
 
-func (r *TblPreorder) GetPreorderByInvoiceId(ctx context.Context, invoiceId int32) (*entity.TblPreorder, error) {
+func (r *TblPreorder) GetPreorderByInvoiceId(ctx context.Context, invoiceId string) (*entity.TblPreorder, error) {
 	var existingPreorder entity.TblPreorder
 
 	err := r.DB.WithContext(ctx).Where("payment_invoice_id = ?", invoiceId).First(&existingPreorder).Error
