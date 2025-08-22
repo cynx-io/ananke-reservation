@@ -10,6 +10,7 @@ import "ananke/object.proto";
 
 service PreorderService {
   rpc InitiatePreorder(InitiatePreorderRequest) returns (PreorderResponse) {}
+  rpc GetLatestCompletedOrPendingPreorder(GetLatestCompletedOrPendingPreorderRequest) returns (PreorderResponse) {}
   rpc ChangePreorderStatusByInvoiceId(ChangePreorderStatusByInvoiceIdRequest) returns (PreorderResponse) {}
 }
 
@@ -18,6 +19,11 @@ message InitiatePreorderRequest {
   int32 preorder_type_id = 2;
   string success_return_url = 3;
   string failure_return_url = 4;
+}
+
+message GetLatestCompletedOrPendingPreorderRequest {
+  core.BaseRequest base = 1;
+  int32 preorder_type_id = 2;
 }
 
 message ChangePreorderStatusByInvoiceIdRequest {

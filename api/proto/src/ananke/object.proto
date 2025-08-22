@@ -30,6 +30,7 @@ message PreorderType {
   string currency = 5;
   core.ChannelType channel_type = 6;
   ActiveStatus active_status = 7;
+  int32 duration_in_seconds = 8;
 }
 
 enum ActiveStatus {

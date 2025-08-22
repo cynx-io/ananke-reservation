@@ -19,6 +19,34 @@ func (s *Service) InitiatePreorder(ctx context.Context, req *proto.InitiatePreor
 
 	userId := req.Base.GetUserId()
 
+	completedPreorder, err := s.TblPreorder.GetCompletedPreorderByUserIdAndType(ctx, userId, req.PreorderTypeId)
+	if !errors.Is(err, gorm.ErrRecordNotFound) {
+
+		if err != nil {
+			response.ErrorDatabasePreorder(resp)
+			return err
+		}
+
+		response.Success(resp)
+		resp.Base.Desc = "found completed preorder"
+		resp.Preorder = completedPreorder.Response()
+		return nil
+	}
+
+	pendingPreorder, err := s.TblPreorder.GetPendingPreorderByUserIdAndType(ctx, userId, req.PreorderTypeId)
+	if !errors.Is(err, gorm.ErrRecordNotFound) {
+
+		if err != nil {
+			response.ErrorDatabasePreorder(resp)
+			return err
+		}
+
+		response.Success(resp)
+		resp.Base.Desc = "found pending preorder"
+		resp.Preorder = pendingPreorder.Response()
+		return nil
+	}
+
 	preorderType, err := s.TblPreorderType.GetPreorderTypeById(ctx, req.PreorderTypeId)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
@@ -30,7 +58,17 @@ func (s *Service) InitiatePreorder(ctx context.Context, req *proto.InitiatePreor
 		return err
 	}
 
-	invoiceResp, err := s.PlutusPaymentClient.CreatePaymentInvoice(ctx, &pbplutus.CreatePaymentInvoiceRequest{})
+	invoiceResp, err := s.PlutusPaymentClient.CreatePaymentInvoice(ctx, &pbplutus.CreatePaymentInvoiceRequest{
+		Base:              req.Base,
+		Currency:          preorderType.Currency,
+		Description:       preorderType.Description,
+		SuccessReturnUrl:  req.SuccessReturnUrl,
+		FailureReturnUrl:  req.FailureReturnUrl,
+		UserId:            userId,
+		Amount:            preorderType.Amount,
+		DurationInSeconds: preorderType.DurationInSeconds,
+		PaymentFeature:    pbplutus.PaymentFeature_PREORDER,
+	})
 	if err != nil {
 		response.ErrorMicroPlutus(resp)
 		return err

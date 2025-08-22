@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	proto "github.com/cynx-io/ananke-reservation/api/proto/gen/ananke"
 	"github.com/cynx-io/ananke-reservation/internal/model/entity"
 	"gorm.io/gorm"
 )
@@ -60,10 +61,27 @@ func (r *TblPreorder) UpdatePreorderStatus(ctx context.Context, id int32, status
 	return nil
 }
 
-func (r *TblPreorder) ListPreorderByUserIdAndType(ctx context.Context, userId int32, reservationTypeId int32) ([]entity.TblPreorder, error) {
-	var preorders []entity.TblPreorder
+func (r *TblPreorder) GetCompletedPreorderByUserIdAndType(ctx context.Context, userId int32, preorderTypeId int32) (*entity.TblPreorder, error) {
+	var preorders *entity.TblPreorder
 
-	err := r.DB.WithContext(ctx).Where("user_id = ? AND reservation_type_id = ?", userId, reservationTypeId).Find(&preorders).Error
+	err := r.DB.WithContext(ctx).
+		Where("user_id = ? AND preorder_type_id = ? AND status = ?", userId, preorderTypeId, int32(proto.TransactionStatus_TRANSACTION_STATUS_COMPLETED)).
+		Order("created_date DESC").
+		First(&preorders).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return preorders, nil
+}
+
+func (r *TblPreorder) GetPendingPreorderByUserIdAndType(ctx context.Context, userId int32, preorderTypeId int32) (*entity.TblPreorder, error) {
+	var preorders *entity.TblPreorder
+
+	err := r.DB.WithContext(ctx).
+		Where("user_id = ? AND preorder_type_id = ? AND expires_at > NOW() AND status = ?", userId, preorderTypeId, int32(proto.TransactionStatus_TRANSACTION_STATUS_PENDING)).
+		Order("created_date DESC").
+		First(&preorders).Error
 	if err != nil {
 		return nil, err
 	}
