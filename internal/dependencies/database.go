@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/cynx-io/ananke-reservation/internal/dependencies/config"
+	"github.com/cynx-io/ananke-reservation/internal/model/entity"
 	"github.com/cynx-io/cynx-core/src/logger"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -59,8 +60,7 @@ func (client *DatabaseClient) Close() error {
 func (client *DatabaseClient) RunMigrations(ctx context.Context) error {
 
 	logger.Info(ctx, "Running database migrations")
-	//err := client.Db.AutoMigrate(entity.TblExample{})
-	err := client.Db.AutoMigrate()
+	err := client.Db.AutoMigrate(entity.TblPreorderType{}, entity.TblPreorder{})
 	if err != nil {
 		return fmt.Errorf("failed to run migrations: %w", err)
 	}

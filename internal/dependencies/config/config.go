@@ -11,6 +11,12 @@ type AppConfig struct {
 		Url   string `json:"url"`
 		Level string `json:"level"`
 	} `json:"elastic"`
+	Hermes struct {
+		Url string `mapstructure:"url"`
+	} `mapstructure:"hermes"`
+	Plutus struct {
+		Url string `mapstructure:"url"`
+	} `mapstructure:"plutus"`
 	App struct {
 		Name    string `mapstructure:"name"`
 		Address string `mapstructure:"address"`

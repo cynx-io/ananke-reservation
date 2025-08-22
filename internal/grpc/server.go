@@ -2,6 +2,7 @@ package grpc
 
 import (
 	"context"
+	proto "github.com/cynx-io/ananke-reservation/api/proto/gen/ananke"
 	"github.com/cynx-io/ananke-reservation/internal/app"
 	"github.com/cynx-io/ananke-reservation/internal/dependencies/config"
 	"github.com/cynx-io/cynx-core/src/logger"
@@ -13,7 +14,7 @@ import (
 )
 
 type Server struct {
-	//proto.UnimplementedExampleServiceServer
+	proto.UnimplementedPreorderServiceServer
 
 	Services *app.Services
 }
@@ -30,7 +31,7 @@ func (s *Server) Start(ctx context.Context) error {
 		}
 
 		server := grpc.NewServer()
-		//proto.RegisterExampleServiceServer(server, s)
+		proto.RegisterPreorderServiceServer(server, s)
 		reflection.Register(server)
 
 		logger.Info(ctx, "Starting gRPC server on ", address)

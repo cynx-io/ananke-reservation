@@ -29,7 +29,7 @@ func NewApp(ctx context.Context) (*App, error) {
 	repos := NewRepos(dependencies)
 
 	logger.Info(ctx, "Initializing Use Cases")
-	services := NewServices(repos, dependencies)
+	services := NewServices(repos)
 
 	logger.Info(ctx, "App initialized")
 	return &App{

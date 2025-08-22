@@ -4,7 +4,7 @@ import "github.com/cynx-io/cynx-core/src/response"
 
 const (
 	// Expected Error
-	codeSuccess            response.Code = "00"
+	CodeSuccess            response.Code = "00"
 	codeValidationError    response.Code = "VE"
 	codeUnauthorized       response.Code = "UA"
 	codeNotAllowed         response.Code = "NA"
@@ -14,12 +14,20 @@ const (
 	// Internal
 	codeInternalError response.Code = "I-IE"
 
+	// Micro
+	codeMicroHermesError response.Code = "M-HE"
+	codeMicroPlutusError response.Code = "M-PL"
+
 	// External Errors
+
+	// Database Errors
+	codeDatabasePreorderError     response.Code = "D-PR"
+	codeDatabasePreorderTypeError response.Code = "D-PT"
 )
 
 var responseCodeNames = map[response.Code]string{
 	// Expected Error
-	codeSuccess:            "Success",
+	CodeSuccess:            "Success",
 	codeValidationError:    "Validation Error",
 	codeUnauthorized:       "Not Authorized",
 	codeNotAllowed:         "Not Allowed",
@@ -28,4 +36,14 @@ var responseCodeNames = map[response.Code]string{
 
 	// Internal
 	codeInternalError: "Internal Error",
+
+	// Micro
+	codeMicroHermesError: "Hermes Error",
+	codeMicroPlutusError: "Plutus Error",
+
+	// External Errors
+
+	// Database Errors
+	codeDatabasePreorderError:     "Database Preorder Error",
+	codeDatabasePreorderTypeError: "Database Preorder Type Error",
 }

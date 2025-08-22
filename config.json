@@ -10,6 +10,12 @@
     "url": "http://elasticsearch.cynx.buzz/",
     "level": "debug"
   },
+  "hermes": {
+    "url": "devspace:31501"
+  },
+  "plutus": {
+    "url": "devspace:31506"
+  },
   "database": {
     "host": "devspace",
     "port": 30306,
@@ -17,7 +23,7 @@
     "username": "cynx",
     "password": "derwin334",
     "dialect": "mysql",
-    "autoMigrate": false,
+    "autoMigrate": true,
     "pool": {
       "max": 5,
       "min": 0,

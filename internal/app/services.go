@@ -1,15 +1,20 @@
 package app
 
 import (
-	"github.com/cynx-io/ananke-reservation/internal/service/exampleservice"
+	paymentservice "github.com/cynx-io/ananke-reservation/internal/service/preorderservice"
 )
 
 type Services struct {
-	ExampleService *exampleservice.Service
+	PaymentService *paymentservice.Service
 }
 
-func NewServices(repos *Repos, dependencies *Dependencies) *Services {
+func NewServices(repos *Repos) *Services {
 	return &Services{
-		ExampleService: exampleservice.New(repos.ExampleRepo),
+		PaymentService: &paymentservice.Service{
+			TblPreorder:         repos.PreorderRepo,
+			TblPreorderType:     repos.PreorderTypeRepo,
+			HermesUserClient:    repos.HermesUserClient,
+			PlutusPaymentClient: repos.PlutusPaymentClient,
+		},
 	}
 }
