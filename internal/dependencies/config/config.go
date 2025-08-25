@@ -7,6 +7,25 @@ import (
 var Config *AppConfig
 
 type AppConfig struct {
+	Perintis struct {
+		Email struct {
+			From                   string `mapstructure:"from"`
+			SubjectPreorderSuccess string `mapstructure:"subjectPreorderSuccess"`
+		} `mapstructure:"email"`
+		Social struct {
+			Instagram string `mapstructure:"instagram"`
+			Tiktok    string `mapstructure:"tiktok"`
+			Facebook  string `mapstructure:"facebook"`
+			Twitter   string `mapstructure:"twitter"`
+			Website   string `mapstructure:"website"`
+			Discord   string `mapstructure:"discord"`
+		} `mapstructure:"social"`
+	} `mapstructure:"perintis"`
+	Aws struct {
+		Region          string `mapstructure:"region"`
+		AccessKeyID     string `mapstructure:"accessKeyId"`
+		SecretAccessKey string `mapstructure:"secretAccessKey"`
+	} `mapstructure:"aws"`
 	Elastic struct {
 		Url   string `json:"url"`
 		Level string `json:"level"`

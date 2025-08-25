@@ -30,5 +30,19 @@
       "acquire": 30000,
       "idle": 10000
     }
+  },
+  "perintis": {
+    "email": {
+      "from": "noreply@perintis.app",
+      "subjectPreorderSuccess": "✅ Pembayaran Preorder Berhasil!"
+    },
+    "social": {
+      "instagram": "https://www.instagram.com/official.perintis/",
+      "tiktok": "https://www.tiktok.com/@official.perintis",
+      "facebook": "https://www.facebook.com/profile.php?id=61579227699595",
+      "twitter": "https://x.com/perintis_ofc",
+      "website": "https://perintis.app",
+      "discord": "https://discord.gg/S3bHWRtmss"
+    }
   }
 }
