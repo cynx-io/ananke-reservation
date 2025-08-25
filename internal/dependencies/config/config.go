@@ -10,7 +10,7 @@ type AppConfig struct {
 	Perintis struct {
 		Email struct {
 			From                   string `mapstructure:"from"`
-			SubjectPreorderSuccess string `mapstructure:"subjectPreorderSuccess"`
+			SubjectPreorderSuccess string `mapstructure:"subject_preorder_success"`
 		} `mapstructure:"email"`
 		Social struct {
 			Instagram string `mapstructure:"instagram"`
@@ -23,8 +23,8 @@ type AppConfig struct {
 	} `mapstructure:"perintis"`
 	Aws struct {
 		Region          string `mapstructure:"region"`
-		AccessKeyID     string `mapstructure:"accessKeyId"`
-		SecretAccessKey string `mapstructure:"secretAccessKey"`
+		AccessKeyID     string `mapstructure:"access_key_id"`
+		SecretAccessKey string `mapstructure:"secret_access_key"`
 	} `mapstructure:"aws"`
 	Elastic struct {
 		Url   string `json:"url"`

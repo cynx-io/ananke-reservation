@@ -34,7 +34,7 @@
   "perintis": {
     "email": {
       "from": "noreply@perintis.app",
-      "subjectPreorderSuccess": "✅ Pembayaran Preorder Berhasil!"
+      "subject_preorder_success": "✅ Pembayaran Preorder Berhasil!"
     },
     "social": {
       "instagram": "https://www.instagram.com/official.perintis/",

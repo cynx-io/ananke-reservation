@@ -8,6 +8,7 @@ import (
 	"github.com/cynx-io/ananke-reservation/internal/dependencies/config"
 	"github.com/cynx-io/ananke-reservation/internal/model/response"
 	"github.com/cynx-io/ananke-reservation/internal/model/template"
+	context2 "github.com/cynx-io/cynx-core/src/context"
 	"github.com/cynx-io/cynx-core/src/externalapi/email"
 	"github.com/cynx-io/cynx-core/src/logger"
 	"gorm.io/gorm"
@@ -43,11 +44,15 @@ func (s *Service) ChangePreorderStatusByInvoiceId(ctx context.Context, req *prot
 			DiscordLink:   config.Config.Perintis.Social.Discord,
 		})
 
-		goCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
 		goBase := req.Base
 
 		go func() {
+
+			goCtx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 			defer cancel()
+
+			goCtx, _ = context2.SetBaseRequest(goCtx, req.Base)
+
 			userResp, goErr := s.HermesUserClient.GetUserById(goCtx, &proto2.GetUserByIdRequest{
 				Base: goBase,
 				Id:   preorder.UserId,
