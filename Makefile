@@ -49,3 +49,8 @@ build_and_push:
 	docker build -t ananke-reservation-dev:latest .
 	docker tag ananke-reservation-dev:latest derwin334/ananke-reservation-dev:latest
 	docker push derwin334/ananke-reservation-dev:latest
+
+build_and_push_prod:
+	docker build -t ananke-reservation-prod:latest .
+	docker tag ananke-reservation-prod:latest derwin334/ananke-reservation-prod:latest
+	docker push derwin334/ananke-reservation-prod:latest
