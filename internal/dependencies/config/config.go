@@ -20,6 +20,13 @@ type AppConfig struct {
 			Website   string `mapstructure:"website"`
 			Discord   string `mapstructure:"discord"`
 		} `mapstructure:"social"`
+		Brevo struct {
+			WaitlistListId int32  `mapstructure:"waitlist_list_id"`
+			ApiKey         string `mapstructure:"api_key"`
+		} `mapstructure:"brevo"`
+		Google struct {
+			RecaptchaSecretKey string `mapstructure:"recaptcha_secret_key"`
+		} `mapstructure:"google"`
 	} `mapstructure:"perintis"`
 	Aws struct {
 		Region          string `mapstructure:"region"`

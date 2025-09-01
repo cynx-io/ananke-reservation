@@ -30,6 +30,7 @@ require (
 	github.com/aws/smithy-go v1.22.5 // indirect
 	github.com/elastic/go-elasticsearch v0.0.0 // indirect
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
+	github.com/getbrevo/brevo-go v1.1.3 // indirect
 	github.com/go-sql-driver/mysql v1.9.2 // indirect
 	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
