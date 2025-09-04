@@ -8,10 +8,6 @@ var Config *AppConfig
 
 type AppConfig struct {
 	Perintis struct {
-		Email struct {
-			From                   string `mapstructure:"from"`
-			SubjectPreorderSuccess string `mapstructure:"subject_preorder_success"`
-		} `mapstructure:"email"`
 		Social struct {
 			Instagram string `mapstructure:"instagram"`
 			Tiktok    string `mapstructure:"tiktok"`
@@ -20,13 +16,16 @@ type AppConfig struct {
 			Website   string `mapstructure:"website"`
 			Discord   string `mapstructure:"discord"`
 		} `mapstructure:"social"`
-		Brevo struct {
-			WaitlistListId int32  `mapstructure:"waitlist_list_id"`
-			ApiKey         string `mapstructure:"api_key"`
-		} `mapstructure:"brevo"`
+		Email struct {
+			From                   string `mapstructure:"from"`
+			SubjectPreorderSuccess string `mapstructure:"subject_preorder_success"`
+		} `mapstructure:"email"`
 		Google struct {
 			RecaptchaSecretKey string `mapstructure:"recaptcha_secret_key"`
 		} `mapstructure:"google"`
+		Brevo struct {
+			ApiKey string `mapstructure:"api_key"`
+		} `mapstructure:"brevo"`
 	} `mapstructure:"perintis"`
 	Aws struct {
 		Region          string `mapstructure:"region"`

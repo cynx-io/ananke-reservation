@@ -15,6 +15,7 @@ import (
 
 type Server struct {
 	proto.UnimplementedPreorderServiceServer
+	proto.UnimplementedWaitlistServiceServer
 
 	Services *app.Services
 }
@@ -32,6 +33,7 @@ func (s *Server) Start(ctx context.Context) error {
 
 		server := grpc.NewServer()
 		proto.RegisterPreorderServiceServer(server, s)
+		proto.RegisterWaitlistServiceServer(server, s)
 		reflection.Register(server)
 
 		logger.Info(ctx, "Starting gRPC server on ", address)

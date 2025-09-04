@@ -15,7 +15,7 @@ service WaitlistService {
 message RegisterWaitlistRequest {
   core.BaseRequest base = 1;
   string email = 2;
-  string captcha_token = 3;
+  string recaptcha_token = 3;
   int32 waitlist_type_id = 4;
 }
 

@@ -45,10 +45,26 @@ func ErrorDatabasePreorderType[Resp response.Generic](resp Resp) {
 	setResponse(resp, codeDatabasePreorderTypeError)
 }
 
+func ErrorDatabaseWaitlist[Resp response.Generic](resp Resp) {
+	setResponse(resp, codeDatabaseWaitlistError)
+}
+
+func ErrorDatabaseWaitlistType[Resp response.Generic](resp Resp) {
+	setResponse(resp, codeDatabaseWaitlistTypeError)
+}
+
 func ErrorMicroHermes[Resp response.Generic](resp Resp) {
 	setResponse(resp, codeMicroHermesError)
 }
 
 func ErrorMicroPlutus[Resp response.Generic](resp Resp) {
 	setResponse(resp, codeMicroPlutusError)
+}
+
+func ErrorExternalRecaptcha[Resp response.Generic](resp Resp) {
+	setResponse(resp, codeExternalRecaptcha)
+}
+
+func ErrorExternalBrevo[Resp response.Generic](resp Resp) {
+	setResponse(resp, codeExternalBrevo)
 }

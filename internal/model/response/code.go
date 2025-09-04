@@ -19,10 +19,14 @@ const (
 	codeMicroPlutusError response.Code = "M-PL"
 
 	// External Errors
+	codeExternalBrevo     response.Code = "E-BR"
+	codeExternalRecaptcha response.Code = "E-RC"
 
 	// Database Errors
 	codeDatabasePreorderError     response.Code = "D-PR"
 	codeDatabasePreorderTypeError response.Code = "D-PT"
+	codeDatabaseWaitlistError     response.Code = "D-WL"
+	codeDatabaseWaitlistTypeError response.Code = "D-WT"
 )
 
 var responseCodeNames = map[response.Code]string{
@@ -42,8 +46,12 @@ var responseCodeNames = map[response.Code]string{
 	codeMicroPlutusError: "Plutus Error",
 
 	// External Errors
+	codeExternalBrevo:     "Brevo Error",
+	codeExternalRecaptcha: "Recaptcha Error",
 
 	// Database Errors
 	codeDatabasePreorderError:     "Database Preorder Error",
 	codeDatabasePreorderTypeError: "Database Preorder Type Error",
+	codeDatabaseWaitlistError:     "Database Waitlist Error",
+	codeDatabaseWaitlistTypeError: "Database Waitlist Type Error",
 }

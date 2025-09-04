@@ -27,10 +27,10 @@ func (r *TblWaitlist) GetWaitlistById(ctx context.Context, id int32) (*entity.Tb
 	return &existingWaitlist, nil
 }
 
-func (r *TblWaitlist) GetWaitlistByEmail(ctx context.Context, email string) (*entity.TblWaitlist, error) {
+func (r *TblWaitlist) GetWaitlistByEmailAndType(ctx context.Context, email string, waitlistTypeId int32) (*entity.TblWaitlist, error) {
 	var existingWaitlist entity.TblWaitlist
 
-	err := r.DB.WithContext(ctx).Where("email = ?", email).First(&existingWaitlist).Error
+	err := r.DB.WithContext(ctx).Where("email = ? AND waitlist_type_id = ?", email, waitlistTypeId).First(&existingWaitlist).Error
 	if err != nil {
 		return nil, err
 	}

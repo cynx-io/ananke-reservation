@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"encoding/json"
 	proto "github.com/cynx-io/ananke-reservation/api/proto/gen/ananke"
 	core "github.com/cynx-io/cynx-core/proto/gen"
 	"github.com/cynx-io/cynx-core/src/entity"
@@ -8,13 +9,28 @@ import (
 
 type TblWaitlistType struct {
 	entity.EssentialEntity
-	Name              string  `json:"name" gorm:"type:varchar(255);not null"`
-	Description       string  `json:"description" gorm:"type:varchar(255);"`
-	Currency          string  `json:"currency" gorm:"type:varchar(10);not null"`
-	Amount            float32 `json:"amount" gorm:"type:decimal(10,2);not null"`
-	ChannelType       int32   `json:"channel_type" gorm:"type:tinyint(4);not null"`
-	ActiveStatus      int32   `json:"active_status" gorm:"type:tinyint(4);not null"`
-	DurationInSeconds int32   `json:"duration_in_seconds" gorm:"type:int;not null"`
+	Name         string `json:"name" gorm:"type:varchar(255);not null"`
+	Description  string `json:"description" gorm:"type:varchar(255);"`
+	ListIds      string `json:"list_ids" gorm:"type:varchar(255);"`
+	ChannelType  int32  `json:"channel_type" gorm:"type:tinyint(4);not null"`
+	ActiveStatus int32  `json:"active_status" gorm:"type:tinyint(4);not null"`
+}
+
+func (u TblWaitlistType) GetListIds() []int64 {
+	var ids []int64
+	if u.ListIds == "" || u.ListIds == "[]" {
+		return ids
+	}
+	if len(u.ListIds) <= 2 {
+		return ids
+	}
+
+	err := json.Unmarshal([]byte(u.ListIds), &ids)
+	if err != nil {
+		return ids
+	}
+
+	return ids
 }
 
 func (u TblWaitlistType) Response() *proto.WaitlistType {

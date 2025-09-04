@@ -1,15 +1,15 @@
 package externalapi
 
 import (
-	"context"
+	"github.com/cynx-io/ananke-reservation/internal/dependencies/config"
 	brevo "github.com/getbrevo/brevo-go/lib"
 )
 
-func New(ctx context.Context) *brevo.APIClient {
+func NewBrevoClient() *brevo.APIClient {
 
 	cfg := brevo.NewConfiguration()
 
-	cfg.AddDefaultHeader("api-key", "YOUR_API_KEY")
+	cfg.AddDefaultHeader("api-key", config.Config.Perintis.Brevo.ApiKey)
 	br := brevo.NewAPIClient(cfg)
 	return br
 }
